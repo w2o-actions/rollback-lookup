@@ -8,7 +8,7 @@ inputs:
     description: 'Github env variable'
     required: true 
   workflow:
-    description: Github env variable'
+    description: 'Github env variable'
     required: true         
 outputs:
   run-ID: # id of output

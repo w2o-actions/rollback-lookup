@@ -23,7 +23,6 @@ async function getWorkflowId(repo){
         return instance.get('repos/'+repo+'/actions/workflows')
         .then(function (response) {            
             for(const i of response.data.workflows){ 
-                console.log("here is the raw -->", response.data.workflows);
                 const name = i.name;
                 const workflowId = i.id;
                 if(name === workflowName){
