@@ -3,7 +3,11 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 // Extras
 const axios = require('axios');
-const token = process.env.PA_TOKEN;
+// Params
+const token = core.getInput("token");
+const repo = core.getInput('repo');
+const workflowName = core.getInput('workflow');
+
 
 const instance = axios.create({
     baseURL: "https://api.github.com",
@@ -16,13 +20,13 @@ const instance = axios.create({
 
 async function getWorkflowId(repo){
     try{
-        return instance.get(`${GITHUB_REPOSITORY}/'+repo+'/actions/workflows`)
+        return instance.get(repo+'/actions/workflows')
         .then(function (response) {            
             for(const i of response.data.workflows){ 
                 console.log("here is the raw -->", response.data.workflows);
                 const name = i.name;
                 const workflowId = i.id;
-                if(name === $GITHUB_WORKFLOW){
+                if(name === workflowName){
                     return workflowId;
                 }
             }   
@@ -34,7 +38,7 @@ async function getWorkflowId(repo){
 }
 
 async function getRuns(id){
-    return instance.get(`${GITHUB_REPOSITORY}/hanako-backend/actions/workflows/'+id+'/runs?status=success&per_page=1`)
+    return instance.get(repo+'/actions/workflows/'+id+'/runs?status=success&per_page=1')
       .then(function (response) {
         for(const i of response.data.workflow_runs){
             const workflowRunId = i.id;
@@ -51,7 +55,8 @@ try{
     getWorkflowId(repo).then(async function (workflowId){
         console.log("here is the workflowId --> ", workflowId);
         await new Promise(resolve => resolve(getRuns(workflowId).then(async function (workflowRunId){
-            console.log("here is workflow run id --> ", workflowRunId)
+            console.log("here is workflow run id --> ", workflowRunId);
+            core.setOutput("workflow run ID:", workflowRunId);
         })))
     })
 }
