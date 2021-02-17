@@ -1,0 +1,25 @@
+{
+  "name": "rollback-lookup",
+  "version": "0.0.1",
+  "description": "Lookup last success to rollback to",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w2o-actions/rollback-lookup.git"
+  },
+  "author": "Christopher Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/w2o-actions/rollback-lookup/issues"
+  },
+  "homepage": "https://github.com/w2o-actions/rollback-lookup#readme"
+}
