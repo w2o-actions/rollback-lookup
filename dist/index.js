@@ -35,7 +35,7 @@ const instance = axios.create({
 
 async function getWorkflowId(repo){
     try{
-        return instance.get(repo+'/actions/workflows')
+        return instance.get('repos/'+repo+'/actions/workflows')
         .then(function (response) {            
             for(const i of response.data.workflows){ 
                 console.log("here is the raw -->", response.data.workflows);
@@ -53,7 +53,7 @@ async function getWorkflowId(repo){
 }
 
 async function getRuns(id){
-    return instance.get(repo+'/actions/workflows/'+id+'/runs?status=success&per_page=1')
+    return instance.get('repos/'+repo+'/actions/workflows/'+id+'/runs?status=success&per_page=1')
       .then(function (response) {
         for(const i of response.data.workflow_runs){
             const workflowRunId = i.id;
