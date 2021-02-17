@@ -56,7 +56,7 @@ try{
         console.log("here is the workflowId --> ", workflowId);
         await new Promise(resolve => resolve(getRuns(workflowId).then(async function (workflowRunId){
             console.log("here is workflow run id --> ", workflowRunId);
-            core.setOutput("workflow run ID:", workflowRunId);
+            core.setOutput("run-ID", workflowRunId);
         })))
     })
 }

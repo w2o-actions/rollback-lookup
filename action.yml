@@ -1,14 +1,18 @@
 name: 'rollback-lookup'
 description: 'Lookup previous successful workflow run in the current GH Action Worfklow'
 inputs:
-  PA_TOKEN:
+  token:
     description: 'Personal Access Token'
+    required: true
+  repo:
+    description: 'Github env variable'
     required: true 
+  workflow:
+    description: Github env variable'
+    required: true         
 outputs:
-  schema: # id of output
-    description: 'The output from your script'
-  seed: # id of output
-    description: 'The output from your script'    
+  run-ID: # id of output
+    description: 'The workflow run ID'  
 runs:
   using: 'node12'
   main: 'dist/index.js'
