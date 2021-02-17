@@ -11,7 +11,7 @@ inputs:
     description: 'Github env variable'
     required: true         
 outputs:
-  run-ID: # id of output
+  id: # id of output
     description: 'The workflow run ID'  
 runs:
   using: 'node12'
