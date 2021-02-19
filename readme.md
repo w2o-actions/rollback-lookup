@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: run-id
         id: run-id
-        uses: w2o-actions/rollback-lookup@v1.0.0
+        uses: w2o-actions/runid-lookup@v1.0.0
         with:
           repo: ${{ github.repository }} 
           workflow: ${{ github.workflow }}
